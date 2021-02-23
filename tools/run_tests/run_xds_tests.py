@@ -2436,26 +2436,15 @@ try:
             test_log_file = open(test_log_filename, 'w+')
             client_process = None
 
-            if test_case in _TESTS_TO_RUN_MULTIPLE_RPCS:
-                rpcs_to_send = '--rpc="UnaryCall,EmptyCall"'
-            else:
-                rpcs_to_send = '--rpc="UnaryCall"'
+            rpcs_to_send = '--rpc="UnaryCall,EmptyCall"'
 
-            if test_case in _TESTS_TO_SEND_METADATA:
-                metadata_to_send = '--metadata="EmptyCall:{keyE}:{valueE},UnaryCall:{keyU}:{valueU},UnaryCall:{keyNU}:{valueNU}"'.format(
-                    keyE=_TEST_METADATA_KEY,
-                    valueE=_TEST_METADATA_VALUE_EMPTY,
-                    keyU=_TEST_METADATA_KEY,
-                    valueU=_TEST_METADATA_VALUE_UNARY,
-                    keyNU=_TEST_METADATA_NUMERIC_KEY,
-                    valueNU=_TEST_METADATA_NUMERIC_VALUE)
-            else:
-                # Setting the arg explicitly to empty with '--metadata=""'
-                # makes C# client fail
-                # (see https://github.com/commandlineparser/commandline/issues/412),
-                # so instead we just rely on clients using the default when
-                # metadata arg is not specified.
-                metadata_to_send = ''
+            metadata_to_send = '--metadata="EmptyCall:{keyE}:{valueE},UnaryCall:{keyU}:{valueU},UnaryCall:{keyNU}:{valueNU}"'.format(
+                keyE=_TEST_METADATA_KEY,
+                valueE=_TEST_METADATA_VALUE_EMPTY,
+                keyU=_TEST_METADATA_KEY,
+                valueU=_TEST_METADATA_VALUE_UNARY,
+                keyNU=_TEST_METADATA_NUMERIC_KEY,
+                valueNU=_TEST_METADATA_NUMERIC_VALUE)
 
             # TODO(ericgribkoff) Temporarily disable fail_on_failed_rpc checks
             # in the client. This means we will ignore intermittent RPC
