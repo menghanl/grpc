@@ -286,9 +286,9 @@ _BOOTSTRAP_TEMPLATE = """
 # can race with the URL map patch.
 _TESTS_TO_FAIL_ON_RPC_FAILURE = ['ping_pong', 'round_robin']
 # Tests that run UnaryCall and EmptyCall.
-_TESTS_TO_RUN_MULTIPLE_RPCS = ['path_matching', 'header_matching']
+_TESTS_TO_RUN_MULTIPLE_RPCS = ['round_robin', 'path_matching', 'header_matching']
 # Tests that make UnaryCall with test metadata.
-_TESTS_TO_SEND_METADATA = ['header_matching']
+_TESTS_TO_SEND_METADATA = ['round_robin', 'header_matching']
 _TEST_METADATA_KEY = 'xds_md'
 _TEST_METADATA_VALUE_UNARY = 'unary_yranu'
 _TEST_METADATA_VALUE_EMPTY = 'empty_ytpme'
