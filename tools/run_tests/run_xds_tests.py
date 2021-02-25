@@ -669,7 +669,7 @@ def test_load_report_based_failover(gcp, backend_service,
 
         # Set primary locality's balance mode to RATE, and RPS to 120% of the
         # client's QPS. Only the primary locality will be used.
-        max_rate = int(args.qps * 6 / 5)
+        max_rate = int(args.qps * 20 / 5)
         logger.info('Patching backend service to RATE with %d max_rate',
                     max_rate)
         patch_backend_service(
