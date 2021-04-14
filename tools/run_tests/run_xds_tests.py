@@ -856,9 +856,10 @@ def test_secondary_locality_gets_requests_on_primary_failure(
             wait_until_all_rpcs_go_to_given_backends(secondary_instance_names,
                                                      _WAIT_FOR_BACKEND_SEC)
         finally:
-            set_serving_status(primary_instance_names,
-                               gcp.service_port,
-                               serving=True)
+            logger.info('not resetting serving status')
+            # set_serving_status(primary_instance_names,
+            #                    gcp.service_port,
+            #                    serving=True)
     except RpcDistributionError as e:
         if not swapped_primary_and_secondary and is_primary_instance_group(
                 gcp, secondary_instance_group):
@@ -872,7 +873,8 @@ def test_secondary_locality_gets_requests_on_primary_failure(
         else:
             raise e
     finally:
-        patch_backend_service(gcp, backend_service, [primary_instance_group])
+        # patch_backend_service(gcp, backend_service, [primary_instance_group])
+        logger.info('not reseting backend_service')
 
 
 def prepare_services_for_urlmap_tests(gcp, original_backend_service,
